@@ -121,6 +121,12 @@ namespace Skybrud.Social.Vimeo.Models.Videos {
         /// </summary>
         public string ResourceKey  { get; }
 
+        /// <summary>
+        /// Gets the files.
+        /// </summary>
+        /// <value>The files.</value>
+        public VimeoVideoFile[] Files { get; }
+
         #endregion
 
         #region Constructors
@@ -143,6 +149,7 @@ namespace Skybrud.Social.Vimeo.Models.Videos {
             // "license"
             // "privacy"
             Pictures = obj.GetObject("pictures", VimeoVideoPictures.Parse);
+            Files = obj.GetArrayItems("files", VimeoVideoFile.Parse);
             Tags = obj.GetArrayItems("tags", VimeoTag.Parse);
             Stats = obj.GetObject("stats", VimeoVideoStats.Parse);
             MetaData = obj.GetObject("metadata", VimeoVideoMetaData.Parse);
